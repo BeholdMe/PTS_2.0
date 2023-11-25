@@ -12,8 +12,10 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/layout/activity_qualifications.xml" value="0.10326086956521739" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.11639492753623189" />
+        <entry key="app/src/main/res/layout/activity_search.xml" value="0.19722222222222222" />
         <entry key="app/src/main/res/layout/activity_viewcategory.xml" value="0.10326086956521739" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.10326086956521739" />
+        <entry key="app/src/main/res/layout/list_tutors.xml" value="0.19722222222222222" />
       </map>
     </option>
   </component>

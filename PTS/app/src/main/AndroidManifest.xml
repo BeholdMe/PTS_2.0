@@ -31,6 +31,7 @@
         <activity android:name=".BecomeATutor.QualificationsActivity" />
         <activity android:name=".BecomeATutor.InformationActivity" />
 
+        <activity android:name=".Search.SearchActivity" />
 
 
     </application>

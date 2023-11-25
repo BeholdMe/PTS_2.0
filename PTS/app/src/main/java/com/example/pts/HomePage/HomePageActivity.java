@@ -50,7 +50,7 @@ public class HomePageActivity extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(com.example.pts.HomePage.HomePageActivity.this, com.example.pts.Search.SearchActivity.class));
             }
         });
     }

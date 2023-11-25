@@ -91,6 +91,7 @@ public class BecomeATutorActivity extends AppCompatActivity {
                 intent.putExtra("phone", phone);
 
                 startActivity(intent);
+                finish();
             }
         });
 
