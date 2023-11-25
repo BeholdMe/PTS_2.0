@@ -78,15 +78,10 @@ public class InformationActivity extends AppCompatActivity {
 
     private void saveTutor(String selectedCategory, String firstName, String lastName, String email, String phone, String qualifications, String workexperience, String city, String state, String distance, String time, String price) {
         try {
-            FileOutputStream fileOutputStream = openFileOutput("tutors.txt", MODE_PRIVATE);
-            OutputStreamWriter writer = new OutputStreamWriter(fileOutputStream);
-
-
-            String dataToWrite = selectedCategory + "," + firstName + "," + lastName + "," + email + "," + phone + "," + qualifications + "," + workexperience + "," + city + "," + state + "," + distance + "," + time + "," + price;
-
-
-            writer.write(dataToWrite);
-            writer.close();
+            String data= selectedCategory + "," + firstName + "," + lastName + "," + email + "," + phone + "," + qualifications + "," + workexperience + "," + city + "," + state + "," + distance + "," + time + "," + price + "\n";
+            FileOutputStream fileOutputStream = openFileOutput("tutors.txt", MODE_APPEND);
+            fileOutputStream.write(data.getBytes());
+            fileOutputStream.close();
 
             showToast("You have been registered as a tutor");
         } catch (IOException e) {
