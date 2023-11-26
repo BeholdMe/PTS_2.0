@@ -22,7 +22,16 @@
         <activity android:name=".LoginAndRegistration.RegisterActivity" />
         <activity android:name=".LoginAndRegistration.ForgotPasswordActivity" />
 
-        <activity android:name=".HomePage.HomePageActivity" />
+        <activity
+            android:name=".Payments.CreditCardPayments"
+            android:exported="false" />
+        <activity
+            android:name=".Payments.PaymentPage"
+            android:exported="false" />
+        <activity
+            android:name=".HomePage.HomePageActivity"
+            android:exported="false"
+            android:label="Home" />
 
         <activity android:name=".TutoringCategories.ViewCategoryActivity" />
         <activity android:name=".TutoringCategories.CreateCategoryActivity" />
