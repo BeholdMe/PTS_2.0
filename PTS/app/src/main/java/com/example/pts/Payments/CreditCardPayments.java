@@ -47,7 +47,8 @@ public class CreditCardPayments extends AppCompatActivity
         btnSubmitCC.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 //String variables for card number, security code, and expiration date
 
                 String ccNumber = editTxtCCNumber.getText().toString().trim();

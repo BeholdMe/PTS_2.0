@@ -66,7 +66,7 @@
         android:ems="10"
         android:layout_marginTop="5dp"
         android:inputType="number"
-        android:hint="CVS Number (on back of card)"
+        android:hint="CVS Number (see back of card)"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextLastNameCC" />
 
