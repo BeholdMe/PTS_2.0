@@ -94,7 +94,7 @@ public class InformationActivity extends AppCompatActivity {
 
         try{
             //DBHelper DB = new DBHelper(this);
-            int userID = DB.insertNewTutor(selectedCategory, firstName, lastName, email, phone, qualifications, workexperience, city, state, distance, time, price, false);
+            int userID = DB.insertNewTutor(selectedCategory, firstName, lastName, email, phone, qualifications, workexperience, city, state, distance, time, price, 0);
         }
         catch (Exception DBTutor){
             DBTutor.printStackTrace();

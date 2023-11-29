@@ -106,6 +106,31 @@ public class SearchActivity extends AppCompatActivity {
         ArrayList<Tutor> list = new ArrayList<>();
         String line = "";
         int n = 0;
+
+
+        try {
+            FileInputStream fileInputStreamAd = openFileInput("tutorsAd.txt");
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStreamAd);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 13 ) {
+                    list.add(new Tutor(parts[1].trim() + " " + parts[2].trim() + " (Sponsored)",  parts[0].trim(),  parts[7].trim() + " " + parts[8].trim(), parts[9].trim(),  parts[10].trim(),  parts[11].trim()));
+                    n += 1;
+                }
+            }
+
+
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
         try {
             FileInputStream fileInputStream = openFileInput("tutors.txt");
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);

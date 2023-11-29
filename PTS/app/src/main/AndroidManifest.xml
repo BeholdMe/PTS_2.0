@@ -40,8 +40,11 @@
         <activity android:name=".BecomeATutor.QualificationsActivity" />
         <activity android:name=".BecomeATutor.InformationActivity" />
 
-        <activity android:name=".Search.SearchActivity" />
+        <activity android:name=".Advertisement.BecomeTutorAdActivity" />
+        <activity android:name=".Advertisement.InformationAdActivity" />
+        <activity android:name=".Advertisement.QualificationsAdActivity" />
 
+        <activity android:name=".Search.SearchActivity" />
 
     </application>
 

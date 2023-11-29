@@ -151,7 +151,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    public int insertNewTutor(String selectedCategory, String firstName, String lastName, String email, String phone, String qualifications, String workexperience, String city, String state, String distance, String time, String price, Boolean is_ad) {
+    public int insertNewTutor(String selectedCategory, String firstName, String lastName, String email, String phone, String qualifications, String workexperience, String city, String state, String distance, String time, String price, int is_ad) {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("Catagory", selectedCategory);
