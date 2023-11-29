@@ -84,7 +84,7 @@ public class CreditCardPayments extends AppCompatActivity
                 }
                 else
                 {
-                    showToast("Successfully Entered Info. Receipt will be sent out shortyly!");
+                    showToast("Successfully Entered Info. Receipt will be sent out shortly!");
                     finish();
                 }
 

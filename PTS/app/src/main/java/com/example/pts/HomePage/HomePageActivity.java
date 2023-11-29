@@ -10,7 +10,7 @@ import android.os.Bundle;
 
 public class HomePageActivity extends AppCompatActivity {
 
-    private Button btnTutoringCategories, btnBecomeATutor, btnSearch;
+    private Button btnTutoringCategories, btnBecomeATutor, btnSearch, btnPayments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -22,6 +22,7 @@ public class HomePageActivity extends AppCompatActivity {
         btnTutoringCategories = findViewById(R.id.btnTutoringCategories);
         btnBecomeATutor = findViewById(R.id.btnBecomeATutor);
         btnSearch = findViewById(R.id.btnSearchHome);
+        btnPayments = findViewById(R.id.btnPayments);
 
         //Listeners to send user to the page they click on
         btnTutoringCategories.setOnClickListener(new View.OnClickListener()
@@ -48,6 +49,15 @@ public class HomePageActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 startActivity(new Intent(com.example.pts.HomePage.HomePageActivity.this, com.example.pts.Search.SearchActivity.class));
+            }
+        });
+
+        btnPayments.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                startActivity(new Intent(com.example.pts.HomePage.HomePageActivity.this, com.example.pts.Payments.PaymentPage.class));
             }
         });
     }
