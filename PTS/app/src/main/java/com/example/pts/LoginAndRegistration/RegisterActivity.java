@@ -8,6 +8,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.pts.DatabaseManagement.DBHelper;
 import com.example.pts.R;
 
 import java.io.FileOutputStream;
@@ -15,11 +17,15 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.database.Cursor;
+import androidx.annotation.Nullable;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private TextView textViewRegister;
     private EditText editTextFirstName, editTextLastName, editTextEmail, editTextPhone, editTextNewUsername, editTextNewPassword, editTextSecurity;
     private Button btnRegister;
+    DBHelper DB = new DBHelper(this);
 
 
     @Override
@@ -79,6 +85,15 @@ public class RegisterActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        try{
+            //DBHelper DB = new DBHelper(this);
+            int userID = DB.insertNewUser(newUsername, security, firstName, lastName, email, phone, newPassword);
+        }
+        catch (Exception DBReg){
+            DBReg.printStackTrace();
+        }
+
     }
     private void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();

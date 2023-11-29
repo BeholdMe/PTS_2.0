@@ -13,6 +13,8 @@ import android.widget.AdapterView;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.pts.DatabaseManagement.DBHelper;
 import com.example.pts.R;
 
 import java.io.BufferedReader;
@@ -36,6 +38,7 @@ public class InformationActivity extends AppCompatActivity {
 
     private EditText editTextCity, editTextState, editTextDistance, editTextTime, editTextPrice;
     private Button btnSubmit;
+    DBHelper DB = new DBHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,8 +90,16 @@ public class InformationActivity extends AppCompatActivity {
             showToast("You have been registered as a tutor");
         } catch (IOException e) {
             e.printStackTrace();
-
         }
+
+        try{
+            //DBHelper DB = new DBHelper(this);
+            int userID = DB.insertNewTutor(selectedCategory, firstName, lastName, email, phone, qualifications, workexperience, city, state, distance, time, price, false);
+        }
+        catch (Exception DBTutor){
+            DBTutor.printStackTrace();
+        }
+
     }
 
 
