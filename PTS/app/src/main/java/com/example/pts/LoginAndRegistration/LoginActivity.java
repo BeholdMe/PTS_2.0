@@ -99,9 +99,6 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-
-
-
         try {
             FileInputStream fileInputStream = openFileInput("login.txt");
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
@@ -124,9 +121,6 @@ public class LoginActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
 
 
 

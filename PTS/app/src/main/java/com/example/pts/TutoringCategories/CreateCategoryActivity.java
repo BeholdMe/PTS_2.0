@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.pts.DatabaseManagement.DBHelper;
 import com.example.pts.R;
 
 import java.io.FileOutputStream;
@@ -18,6 +19,7 @@ public class CreateCategoryActivity extends AppCompatActivity {
 
     private EditText editTextCategoryName, editTextCategoryDescription;
     private Button btnSubmit;
+    DBHelper DB = new DBHelper(this);
 
 
     @Override
@@ -46,6 +48,16 @@ public class CreateCategoryActivity extends AppCompatActivity {
 
 
     private void createcategory(String categoryName, String categoryDescription) {
+
+        try{
+            //sql insert here
+            DB.insertCat(categoryName, categoryDescription);
+        }
+        catch (Exception CategoryCreation){
+            CategoryCreation.printStackTrace();
+        }
+
+
         try {
             String data = categoryName + "," + categoryDescription + "\n";
             FileOutputStream fileOutputStream = openFileOutput("categories.txt", MODE_APPEND);

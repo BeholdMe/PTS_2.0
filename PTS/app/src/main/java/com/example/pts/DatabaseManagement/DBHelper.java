@@ -101,6 +101,13 @@ public class DBHelper extends SQLiteOpenHelper {
                 "  Payment_type TEXT NOT NULL,\n" +
                 "  FOREIGN KEY (UserID) REFERENCES USER(UserID)\n" +
                 ");");
+
+        DB.execSQL("INSERT INTO CATEGORY (Catagory_name, DESCRIPTION) VALUES \n" +
+                "(\"Math\",\"Mathematics\"), \n" +
+                "(\"French\",\"Language\"), \n" +
+                "(\"Piano\",\"Musical instrument\"), \n" +
+                "(\"Tenis\",\"Sport\"), \n" +
+                "(\"Programing\", \"Programing\");");
     }
 
     @Override
@@ -146,7 +153,6 @@ public class DBHelper extends SQLiteOpenHelper {
             return -1;
         }
 
-
     }
 
 
@@ -167,29 +173,14 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("Price", price);
         contentValues.put("Is_ad", is_ad);
 
-
-
         long result = DB.insert("PAYMENTHISTORY", null, contentValues);
 
         if (result != -1) {
             return 1;
 
-
-//            // Retrieve the User_Number from the USERS table
-//            Cursor cursor = DB.rawQuery("SELECT User_Number FROM USERS WHERE Username = ?", new String[]{newUsername});
-//            if (cursor.getCount() > 0) {
-//                int retrievedUserId = cursor.getInt(cursor.getColumnIndex("User_Number"));
-//                cursor.close();
-//                return retrievedUserId;
-//            } else {
-//                cursor.close();
-//                return -1;
-//            }
-
         } else {
             return -1;
         }
-
 
     }
 
@@ -201,6 +192,24 @@ public class DBHelper extends SQLiteOpenHelper {
             results = DB.rawQuery("SELECT * FROM USER",null);
         }
         return results;
+    }
+
+
+
+    public int insertCat(String name, String desc) {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Catagory_name", name);
+        contentValues.put("DESCRIPTION", desc);
+
+        long result = DB.insert("CATEGORY", null, contentValues);
+
+        if (result != -1) {
+            return 1;
+        } else {
+            return -1;
+        }
+
     }
 
 
