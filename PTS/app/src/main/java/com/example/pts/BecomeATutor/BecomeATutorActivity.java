@@ -1,6 +1,7 @@
 package com.example.pts.BecomeATutor;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,8 @@ import android.widget.AdapterView;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.pts.DatabaseManagement.DBHelper;
 import com.example.pts.R;
 
 import java.io.BufferedReader;
@@ -36,6 +39,7 @@ public class BecomeATutorActivity extends AppCompatActivity {
     private EditText editTextFirstName, editTextLastName, editTextEmail, editTextPhone, editTextNewUsername, editTextNewPassword, editTextSecurity;
     private Button btnNext;
     String selectedCategory = "";
+    DBHelper DB = new DBHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,7 @@ public class BecomeATutorActivity extends AppCompatActivity {
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPhone = findViewById(R.id.editTextPhone);
         btnNext = findViewById(R.id.btnNext);
+
 
         /*createcategory("Math", "Mathematics");
         createcategory("French", "Language");
@@ -132,6 +137,8 @@ public class BecomeATutorActivity extends AppCompatActivity {
         String line = "";
         int n = 0;
 
+        /*
+
         try {
             FileInputStream fileInputStream = openFileInput(filename);
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
@@ -151,6 +158,21 @@ public class BecomeATutorActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        */
+
+        try {
+            String catname;
+            Cursor cursor = DB.getCat();
+            while (cursor.moveToNext()){
+                catname = (cursor).getString(0);
+                list.add(catname);
+            }
+        }
+        catch (Exception CatReadError){
+            CatReadError.printStackTrace();
+        }
+
         return list;
 
 

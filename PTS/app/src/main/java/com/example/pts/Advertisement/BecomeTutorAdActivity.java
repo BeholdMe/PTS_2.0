@@ -1,6 +1,7 @@
 package com.example.pts.Advertisement;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,7 +12,9 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.pts.DatabaseManagement.DBHelper;
 import com.example.pts.R;
+import com.example.pts.TutoringCategories.Category;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -25,6 +28,7 @@ public class BecomeTutorAdActivity extends AppCompatActivity {
     private EditText editTextFirstName, editTextLastName, editTextEmail, editTextPhone, editTextNewUsername, editTextNewPassword, editTextSecurity;
     private Button btnNext;
     String selectedCategory = "";
+    DBHelper DB = new DBHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,27 +86,20 @@ public class BecomeTutorAdActivity extends AppCompatActivity {
 
     private List<String> readCategoriesFromFile(String filename) {
         List<String> list = new ArrayList<>();
-        String line = "";
-        int n = 0;
 
         try {
-            FileInputStream fileInputStream = openFileInput(filename);
-            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-
-            while ((line = bufferedReader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length == 2 ) {
-                    list.add(parts[0]);
-                    n += 1;
-                }
+            String catname;
+            Cursor cursor = DB.getCat();
+            while (cursor.moveToNext()){
+                catname = (cursor).getString(0);
+                list.add(catname);
             }
-            bufferedReader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        }
+        catch (Exception CatReadError){
+            CatReadError.printStackTrace();
         }
         return list;
+
     }
 
 

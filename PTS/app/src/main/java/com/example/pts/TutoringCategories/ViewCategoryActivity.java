@@ -101,7 +101,6 @@ public class ViewCategoryActivity extends AppCompatActivity {
                 catdesc = (cursor).getString(1);
                 list.add(new Category(catname, catdesc));
             }
-
         }
         catch (Exception CatReadError){
             CatReadError.printStackTrace();
