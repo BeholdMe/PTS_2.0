@@ -53,6 +53,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:text="Become a Tutor" />
+
+            <Button
+                android:id="@+id/btnPayments"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="Payments" />
         </LinearLayout>
     </ScrollView>
 

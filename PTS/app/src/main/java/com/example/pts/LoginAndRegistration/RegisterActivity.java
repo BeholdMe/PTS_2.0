@@ -12,8 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.pts.DatabaseManagement.DBHelper;
 import com.example.pts.R;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -61,6 +64,9 @@ public class RegisterActivity extends AppCompatActivity {
                     showToast("Username should be 8 characters long");
 
                 }
+                else if(isValidUsername(newUsername)) {
+                    showToast("Username already exists");
+                }
                 else if(!isValidPassword(newPassword)) {
                     showToast("Password must include one letter, number, Capital letter, and wild character");
                 }
@@ -97,6 +103,28 @@ public class RegisterActivity extends AppCompatActivity {
     }
     private void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    public boolean isValidUsername(String username){
+            try {
+                FileInputStream fileInputStream = openFileInput("login.txt");
+                InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    String[] parts = line.split(",");
+                    if (parts[0].equals(username)) {
+                        return true;
+                    }
+                }
+
+                bufferedReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return false;
     }
 
     public static boolean isValidPassword(String password) {

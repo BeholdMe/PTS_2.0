@@ -5,11 +5,13 @@
       <map>
         <entry key="app/src/main/res/layout/activity_becomeatutor.xml" value="0.10326086956521739" />
         <entry key="app/src/main/res/layout/activity_createcategory.xml" value="0.10326086956521739" />
+        <entry key="app/src/main/res/layout/activity_credit_card_payments.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.11639492753623189" />
         <entry key="app/src/main/res/layout/activity_homepage.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_information.xml" value="0.10326086956521739" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.11639492753623189" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14361702127659576" />
+        <entry key="app/src/main/res/layout/activity_payment_page.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_qualifications.xml" value="0.10326086956521739" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.11639492753623189" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.19722222222222222" />
