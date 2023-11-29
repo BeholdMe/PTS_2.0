@@ -8,20 +8,29 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.database.Cursor;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.pts.DatabaseManagement.DBHelper;
 import com.example.pts.R;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
     private TextView textViewSignIn, textViewForgotPassword, textViewRegisterHere;
     private EditText editTextUsername, editTextPassword;
     private Button btnSubmit;
+    DBHelper DB = new DBHelper(this);
 
 
     @Override
@@ -69,6 +78,30 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean login(String username, String password) {
+
+        boolean returnval = false;
+        String dbusername, dbpassword;
+        try {
+            Cursor cursor = DB.getLogin();
+            while (cursor.moveToNext()){
+                dbusername = (cursor).getString(1);
+                if (dbusername.equals(username)) {
+                    dbpassword = (cursor).getString(7);
+                    if (dbpassword.equals(password)){
+                        returnval = true;
+                        //return returnval;
+                    }
+                }
+            }
+        }
+        catch (Exception LoginFail){
+            LoginFail.printStackTrace();
+        }
+
+
+
+
+
         try {
             FileInputStream fileInputStream = openFileInput("login.txt");
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
@@ -78,7 +111,12 @@ public class LoginActivity extends AppCompatActivity {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length == 7 && parts[0].equals(username) && parts[1].equals(password)) {
-                    return true;
+                    returnval = true;
+                    /*
+                    This method works even if returnval above is commented out,
+                    But for testing purposes it is left in
+                    */
+                    //return returnval;
                 }
             }
 
@@ -87,7 +125,12 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        return false;
+
+
+
+
+
+        return returnval;
     }
 
     private void showToast(String message) {

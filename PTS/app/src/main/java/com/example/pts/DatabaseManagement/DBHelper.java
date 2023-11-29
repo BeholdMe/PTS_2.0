@@ -74,9 +74,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 "  FOREIGN KEY (StudentID) REFERENCES STUDENT(StudentID)\n" +
                 ");");
         DB.execSQL("CREATE TABLE IF NOT EXISTS PAYMENTHISTORY (\n" +
-                "  PayersID INTEGER NOT NULL,\n" +
+                "  PayersID INTEGER,\n" +
                 "  Payment_number INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-                "  Payment_amount DOUBLE NOT NULL,\n" +
+                "  Payment_amount DOUBLE,\n" +
                 "  Date TEXT NOT NULL,\n" +
                 "  Time TEXT NOT NULL,\n" +
                 "  ReciversID INTEGER,\n" +
@@ -169,7 +169,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
 
-        long result = DB.insert("TUTORLISTING", null, contentValues);
+        long result = DB.insert("PAYMENTHISTORY", null, contentValues);
 
         if (result != -1) {
             return 1;
@@ -192,6 +192,22 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     }
+
+    public Cursor getLogin(){
+        SQLiteDatabase DB = this.getWritableDatabase();
+
+        Cursor results = null;
+        if(DB != null){
+            results = DB.rawQuery("SELECT * FROM USER",null);
+        }
+        return results;
+    }
+
+
+
+
+
+
 
 
 
