@@ -42,7 +42,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "  Phone_number TEXT NOT NULL,\n" +
                 "  Work_experience TEXT NOT NULL,\n" +
                 "  Qualifications TEXT NOT NULL,\n" +
-                "  Is_ad BOOLEAN NOT NULL,\n" +
+                "  Is_ad INTEGER NOT NULL,\n" +
                 "  Price TEXT NOT NULL,\n" +
                 "  Time TEXT NOT NULL,\n" +
                 "  Distance TEXT NOT NULL,\n" +
@@ -130,7 +130,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         if (result != -1) {
             return 1;
-
 
 //            // Retrieve the User_Number from the USERS table
 //            Cursor cursor = DB.rawQuery("SELECT User_Number FROM USERS WHERE Username = ?", new String[]{newUsername});

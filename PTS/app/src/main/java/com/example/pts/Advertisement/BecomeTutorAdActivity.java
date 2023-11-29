@@ -37,12 +37,6 @@ public class BecomeTutorAdActivity extends AppCompatActivity {
         editTextPhone = findViewById(R.id.editTextPhone);
         btnNext = findViewById(R.id.btnNext);
 
-        /*createcategory("Math", "Mathematics");
-        createcategory("French", "Language");
-        createcategory("Piano", "Instrument");*/
-
-
-
         Spinner categorySpinner = findViewById(R.id.categorySpinner);
         List<String> categoriesList = readCategoriesFromFile("categories.txt");
         String[] categories = categoriesList.toArray(new String[0]);
@@ -86,7 +80,6 @@ public class BecomeTutorAdActivity extends AppCompatActivity {
 
     }
 
-
     private List<String> readCategoriesFromFile(String filename) {
         List<String> list = new ArrayList<>();
         String line = "";
@@ -105,15 +98,11 @@ public class BecomeTutorAdActivity extends AppCompatActivity {
                     n += 1;
                 }
             }
-
-
             bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return list;
-
-
     }
 
 

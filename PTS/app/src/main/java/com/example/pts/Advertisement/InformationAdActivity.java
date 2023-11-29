@@ -42,7 +42,6 @@ public class InformationAdActivity extends AppCompatActivity {
                 String time = editTextTime.getText().toString().trim();
                 String price = editTextPrice.getText().toString().trim();
 
-
                 String selectedCategory = getIntent().getStringExtra("categoryName");
                 String firstName = getIntent().getStringExtra("firstName");
                 String lastName = getIntent().getStringExtra("lastName");
@@ -57,7 +56,6 @@ public class InformationAdActivity extends AppCompatActivity {
                 startActivity(intent2);
 
                 finish();
-
             }
         });
 

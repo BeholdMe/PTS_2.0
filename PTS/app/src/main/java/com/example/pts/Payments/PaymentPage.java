@@ -46,6 +46,7 @@ public class PaymentPage extends AppCompatActivity
             public void onClick(View v)
             {
                 startActivity(new Intent(com.example.pts.Payments.PaymentPage.this, com.example.pts.Payments.CreditCardPayments.class));
+                finish();
             }
         });
 
