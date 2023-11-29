@@ -212,7 +212,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public Cursor getCat(){
+        SQLiteDatabase DB = this.getWritableDatabase();
 
+        Cursor results = null;
+        if(DB != null){
+            results = DB.rawQuery("SELECT * FROM CATEGORY",null);
+        }
+        return results;
+    }
 
 
 

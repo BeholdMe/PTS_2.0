@@ -3,6 +3,7 @@ package com.example.pts.TutoringCategories;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -18,6 +19,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import com.example.pts.DatabaseManagement.DBHelper;
 import com.example.pts.R;
 
 import java.util.ArrayList;
@@ -30,6 +32,7 @@ public class ViewCategoryActivity extends AppCompatActivity {
     //private ArrayList<String> list = new ArrayList<>();
     //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, myArrayList);
     //ArrayList<Category> list = new ArrayList<>();
+    DBHelper DB = new DBHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,9 @@ public class ViewCategoryActivity extends AppCompatActivity {
     }
     private ArrayList<Category> viewcategory() {
         ArrayList<Category> list = new ArrayList<>();
+
+
+        /*
         String line = "";
         int n = 0;
         try {
@@ -82,6 +88,25 @@ public class ViewCategoryActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+         */
+
+
+        try {
+            String catname;
+            String catdesc;
+            Cursor cursor = DB.getCat();
+            while (cursor.moveToNext()){
+                catname = (cursor).getString(0);
+                catdesc = (cursor).getString(1);
+                list.add(new Category(catname, catdesc));
+            }
+
+        }
+        catch (Exception CatReadError){
+            CatReadError.printStackTrace();
+        }
+
         return list;
 
 

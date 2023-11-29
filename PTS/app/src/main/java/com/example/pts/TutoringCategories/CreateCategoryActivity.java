@@ -50,7 +50,6 @@ public class CreateCategoryActivity extends AppCompatActivity {
     private void createcategory(String categoryName, String categoryDescription) {
 
         try{
-            //sql insert here
             DB.insertCat(categoryName, categoryDescription);
         }
         catch (Exception CategoryCreation){
