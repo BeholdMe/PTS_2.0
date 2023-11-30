@@ -1,5 +1,6 @@
 package com.example.pts.LoginAndRegistration;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -7,10 +8,36 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/*
+FirebaseApp.initializeApp(this);
+FirebaseAuth mAuth;
+mAuth = FirebaseAuth.getInstance();
+
+
+
+
+
+     mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NotNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+
+ */
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pts.DatabaseManagement.DBHelper;
 import com.example.pts.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -21,14 +48,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.database.Cursor;
-import androidx.annotation.Nullable;
+//import androidx.annotation.Nullable;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private TextView textViewRegister;
     private EditText editTextFirstName, editTextLastName, editTextEmail, editTextPhone, editTextNewUsername, editTextNewPassword, editTextSecurity;
     private Button btnRegister;
-    DBHelper DB = new DBHelper(this);
+    FirebaseDatabase db;
+    DatabaseReference reference;
+    //DBHelper DB = new DBHelper(this);
 
 
     @Override
@@ -37,16 +66,18 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
 
-
         textViewRegister = findViewById(R.id.textViewRegister);
         editTextFirstName = findViewById(R.id.editTextFirstName);
         editTextLastName = findViewById(R.id.editTextLastName);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPhone = findViewById(R.id.editTextPhone);
-        editTextNewUsername = findViewById(R.id.editTextNewUsername);
         editTextNewPassword = findViewById(R.id.editTextNewPassword);
         editTextSecurity = findViewById(R.id.editTextSecurity);
         btnRegister = findViewById(R.id.btnRegister);
+        FirebaseApp.initializeApp(this);
+        FirebaseAuth mAuth;
+        mAuth = FirebaseAuth.getInstance();
+
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,11 +86,58 @@ public class RegisterActivity extends AppCompatActivity {
                 String lastName = editTextLastName.getText().toString().trim();
                 String email = editTextEmail.getText().toString().trim();
                 String phone = editTextPhone.getText().toString().trim();
-                String newUsername = editTextNewUsername.getText().toString().trim();
                 String newPassword = editTextNewPassword.getText().toString().trim();
                 String security = editTextSecurity.getText().toString().trim();
 
-                if(newUsername.length()<8){
+                if (!isValidPassword(newPassword)) {
+                    Toast.makeText(RegisterActivity.this, "Password must include one letter, number, Capital letter, and wild character", Toast.LENGTH_SHORT).show();
+                } else {
+                    mAuth.createUserWithEmailAndPassword(email, newPassword)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NotNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                        if (!firstName.isEmpty() && !lastName.isEmpty() && !phone.isEmpty() && !security.isEmpty()) {
+
+                                            db = FirebaseDatabase.getInstance();
+                                            reference = db.getReference("Users");
+
+
+                                            user = mAuth.getCurrentUser();
+                                            String uid = user.getUid();
+
+                                            User userData = new User(firstName, lastName, email, newPassword, phone, security);
+
+                                            reference.child(uid).push().setValue(userData);
+
+                                            Toast.makeText(RegisterActivity.this, "SignUp Successful", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                        } else {
+                                            Toast.makeText(RegisterActivity.this, "SignUp Failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                }
+                            });
+                }
+            }
+
+        });
+    }
+
+    public static boolean isValidPassword(String password) {
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!]).+$";
+
+        Pattern pattern = Pattern.compile(regex);
+
+        Matcher matcher = pattern.matcher(password);
+
+        return matcher.matches();
+    }
+}
+
+/*
+if(newUsername.length()<8){
 
                     showToast("Username should be 8 characters long");
 
@@ -127,13 +205,6 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
     }
 
-    public static boolean isValidPassword(String password) {
-        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!]).+$";
 
-        Pattern pattern = Pattern.compile(regex);
-
-        Matcher matcher = pattern.matcher(password);
-
-        return matcher.matches();
-    }
 }
+ */

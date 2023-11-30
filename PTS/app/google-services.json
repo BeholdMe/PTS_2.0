@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "42879795940",
+    "project_id": "ptsgroup12-6084a",
+    "storage_bucket": "ptsgroup12-6084a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:42879795940:android:e0cbb9c3d4175a8fc1a2f1",
+        "android_client_info": {
+          "package_name": "com.example.pts"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGLuMmfoLXMD4hfrV7jpLw795EXSRpoXI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

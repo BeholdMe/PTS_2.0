@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".BecomeATutor.BecomeATutorActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/backgroundpastel" />
+
     <TextView
         android:id="@+id/textViewBecomeATutor"
         android:layout_width="match_parent"
